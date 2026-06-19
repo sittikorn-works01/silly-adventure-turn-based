@@ -638,6 +638,7 @@ MonoBehaviour:
   unitActionText: {fileID: 1455436019}
   playerHPBar: {fileID: 207244178}
   enemyHPBar: {fileID: 1837802096}
+  player: {fileID: 1998161249}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1999,9 +2000,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1443618189}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c4313bac12d581488c9079e6f2e8fd2, type: 3}
+  m_Script: {fileID: 11500000, guid: 24ce15d91a6af0e44a9ce87a8e669751, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TurnManager
+  m_EditorClassIdentifier: Assembly-CSharp::BattleManager
   gameplayUIPanel: {fileID: 278908686}
   player: {fileID: 1998161249}
   enemy: {fileID: 991514289}
