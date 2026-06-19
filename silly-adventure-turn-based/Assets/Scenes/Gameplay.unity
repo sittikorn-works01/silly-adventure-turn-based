@@ -321,7 +321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
   Priority:
     Enabled: 1
-    m_Value: 2
+    m_Value: 0
   OutputChannel: 1
   StandbyUpdate: 2
   m_StreamingVersion: 20241001
@@ -359,7 +359,7 @@ Transform:
   m_GameObject: {fileID: 207707837}
   serializedVersion: 2
   m_LocalRotation: {x: 0.10928034, y: -0.037608225, z: 0.0041376, w: 0.99329066}
-  m_LocalPosition: {x: 0.95, y: 2.6831284, z: -6.2279186}
+  m_LocalPosition: {x: 0.95, y: 2.6831284, z: -11.037919}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -454,7 +454,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.10928033, y: -0.037608225, z: 0.0041376003, w: 0.99329066}
-  m_LocalPosition: {x: 0.95, y: 2.6831284, z: -6.2279186}
+  m_LocalPosition: {x: 0.95, y: 2.6831284, z: -11.037919}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -826,8 +826,9 @@ GameObject:
   - component: {fileID: 552180179}
   - component: {fileID: 552180178}
   - component: {fileID: 552180177}
+  - component: {fileID: 552180180}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Canvas - UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -916,6 +917,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!225 &552180180
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552180175}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &554810185
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,12 +940,12 @@ GameObject:
   - component: {fileID: 554810187}
   - component: {fileID: 554810186}
   m_Layer: 0
-  m_Name: 'CinemachineCamera '
+  m_Name: DialogueCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &554810186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -947,7 +960,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
   Priority:
     Enabled: 1
-    m_Value: 0
+    m_Value: 1
   OutputChannel: 1
   StandbyUpdate: 2
   m_StreamingVersion: 20241001
@@ -1001,7 +1014,7 @@ GameObject:
   m_Component:
   - component: {fileID: 780354978}
   m_Layer: 0
-  m_Name: GO - CloseUpCamPos
+  m_Name: GameObject - CloseUpCamTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1159,11 +1172,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 991514288}
-  - component: {fileID: 991514289}
+  - component: {fileID: 991514290}
   - component: {fileID: 991514287}
+  - component: {fileID: 991514289}
   m_Layer: 0
   m_Name: NPC
-  m_TagString: NPC
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1211,7 +1225,28 @@ Transform:
   - {fileID: 552180176}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -150, z: 0}
---- !u!114 &991514289
+--- !u!135 &991514289
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991514286}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 3.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &991514290
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1220,9 +1255,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 991514286}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 195a0545bbe6f474aa9cd0d18cacb615, type: 3}
+  m_Script: {fileID: 11500000, guid: 9924947e1506feb468a68f8c2036bbbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPC
+  uiCanvas: {fileID: 552180180}
+  interactPrompt: Hello Player
 --- !u!1 &1118479591
 GameObject:
   m_ObjectHideFlags: 0
@@ -1234,11 +1271,12 @@ GameObject:
   - component: {fileID: 1118479592}
   - component: {fileID: 1118479594}
   - component: {fileID: 1118479597}
+  - component: {fileID: 1118479599}
   - component: {fileID: 1118479596}
   - component: {fileID: 1118479598}
   m_Layer: 0
   m_Name: PlayerCharacter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1252,7 +1290,7 @@ Transform:
   m_GameObject: {fileID: 1118479591}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2.22}
+  m_LocalPosition: {x: 0, y: 0, z: -7.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1337,6 +1375,18 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 2.38
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &1118479599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118479591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 302214c1e7ab9cc42a98e37c7418a2d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &1241214248
 GameObject:
   m_ObjectHideFlags: 0
@@ -1444,6 +1494,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1858676794}
   m_CullTransparentMesh: 1
+--- !u!1 &1928867061
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1928867063}
+  - component: {fileID: 1928867062}
+  m_Layer: 0
+  m_Name: GameStateController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1928867062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928867061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 542e6a537f9c8ba468c1fd91db00d87e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameStateController
+--- !u!4 &1928867063
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928867061}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2011348182
 GameObject:
   m_ObjectHideFlags: 0
@@ -3152,7 +3246,7 @@ GameObject:
   - component: {fileID: 3751323077054342727}
   - component: {fileID: 7129000994103458877}
   m_Layer: 0
-  m_Name: Ranger
+  m_Name: Model - Renger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3888,7 +3982,7 @@ GameObject:
   - component: {fileID: 6219327559381248866}
   - component: {fileID: 49347878154055960}
   m_Layer: 0
-  m_Name: Rogue
+  m_Name: Model - Rogue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4954,3 +5048,4 @@ SceneRoots:
   - {fileID: 961711856}
   - {fileID: 832575519}
   - {fileID: 410087041}
+  - {fileID: 1928867063}

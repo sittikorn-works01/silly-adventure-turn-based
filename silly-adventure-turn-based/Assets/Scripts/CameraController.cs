@@ -6,16 +6,39 @@ public class CameraController : MonoBehaviour
     public CinemachineCamera thirdpersonCam;
     public CinemachineCamera dialogueCam;
 
-    public void FocusOnDialogue()
+    private GameStateController GameStateController => GameStateController.Instance;
+
+
+    public void Initialize()
     {
-        thirdpersonCam.gameObject.SetActive(false);
+        GameStateController.GameStateChanged += GameStateController_GameStateChanged;
     }
 
-    void Update()
+    private void OnDisable()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        GameStateController.GameStateChanged -= GameStateController_GameStateChanged;
+    }
+
+    private void GameStateController_GameStateChanged(GameState newState)
+    {
+        switch (newState)
         {
-            FocusOnDialogue();
+            case GameState.FreeRoam:
+                OnEnterFreeRoamState();
+                break;
+            case GameState.Dialogue:
+                OnEnterDialogueState();
+                break;
         }
+    }
+
+    private void OnEnterFreeRoamState()
+    {
+        dialogueCam.gameObject.SetActive(false);
+    }
+
+    private void OnEnterDialogueState()
+    {
+        dialogueCam.gameObject.SetActive(true);
     }
 }
