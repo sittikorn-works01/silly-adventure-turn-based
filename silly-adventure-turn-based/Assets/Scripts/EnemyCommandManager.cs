@@ -1,0 +1,24 @@
+using Cysharp.Threading.Tasks;
+using UnityEngine;
+
+public class EnemyCommandManager : BaseUnit
+{
+    public void OnEnterTurn()
+    {
+        DoDamage(GameManager.player);
+        EndTurn().Forget();
+
+    }
+    private async UniTaskVoid EndTurn()
+    {
+        await UniTask.Delay(1000);
+        GameManager.Instance.SetGameState(GameState.PlayerTurn);
+
+    }
+
+    public override void TakeDamage(float receivedDamage)
+    {
+        base.TakeDamage(receivedDamage);
+        GameManager.gameplayUIPanel.UpdateEnemyHPBar(hp, unitInfo.hp);
+    }
+}
