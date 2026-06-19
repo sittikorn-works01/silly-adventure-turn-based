@@ -6,4 +6,7 @@ public enum GameState
     PlayerTurn,
     EnemyTurn,
     Result,
+    FreeRoam,
+    Dialogue,
+    Battle
 }
