@@ -12,7 +12,7 @@ public class EnemyCommandManager : BaseUnit
     private async UniTaskVoid EndTurn()
     {
         await UniTask.Delay(1000);
-        GameManager.Instance.SetGameState(GameState.PlayerTurn);
+        BattleManager.Instance.SetBattleState(BattleState.PlayerTurn);
 
     }
 

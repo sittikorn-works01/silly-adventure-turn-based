@@ -4,7 +4,7 @@ using UnityEngine;
 public class BaseUnit: MonoBehaviour
 {
     public UnitInfo unitInfo;
-    public GameManager GameManager => GameManager.Instance;
+    public BattleManager GameManager => BattleManager.Instance;
     public event Action<float, float> HealthChanged;
 
     public float hp;

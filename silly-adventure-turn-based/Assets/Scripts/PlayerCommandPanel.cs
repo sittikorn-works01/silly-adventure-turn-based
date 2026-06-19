@@ -31,7 +31,7 @@ public class PlayerCommandPanel : MonoBehaviour
     {
         DisableCommandButton();
         await UniTask.Delay(1000);
-        GameManager.Instance.SetGameState(GameState.EnemyTurn);
+        BattleManager.Instance.SetBattleState(BattleState.EnemyTurn);
         
     }
 

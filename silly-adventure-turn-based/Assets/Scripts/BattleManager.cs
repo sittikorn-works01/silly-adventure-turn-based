@@ -1,10 +1,10 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class BattleManager : MonoBehaviour
 {
-    public static GameManager Instance { get; set; }
-    private GameState currentState;
+    public static BattleManager Instance { get; set; }
+    private BattleState currentState;
     public GameplayUIPanel gameplayUIPanel;
 
     public PlayerCommandManager player;
@@ -26,23 +26,23 @@ public class GameManager : MonoBehaviour
     {
         player.Initialize();
         enemy.Initialize();
-        SetGameState(GameState.PlayerTurn);
+        SetBattleState(BattleState.PlayerTurn);
     }
 
-    public void SetGameState(GameState newState)
+    public void SetBattleState(BattleState newState)
     {
         currentState = newState;
-        OnChangeGameState();
+        OnChangeBattleState();
     }
 
-    private void OnChangeGameState()
+    private void OnChangeBattleState()
     {
         switch (currentState)
         {
-            case GameState.PlayerTurn:
+            case BattleState.PlayerTurn:
                 OnEnterPlayerTurn();
                 break;
-            case GameState.EnemyTurn:
+            case BattleState.EnemyTurn:
                 OnEnterEnemyTurn().Forget();
                 break;
             default:
