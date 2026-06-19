@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerCommandManager : BaseUnit
@@ -12,11 +13,5 @@ public class PlayerCommandManager : BaseUnit
     public void OnCommandAttack()
     {
         DoDamage(GameManager.enemy);
-    }
-
-    public override void TakeDamage(float receivedDamage)
-    {
-        base.TakeDamage(receivedDamage);
-        GameManager.gameplayUIPanel.UpdatePlayerHPBar(hp, unitInfo.hp);
     }
 }

@@ -10,6 +10,18 @@ public class GameplayUIPanel : MonoBehaviour
     [SerializeField] private Image playerHPBar;
     [SerializeField] private Image enemyHPBar;
 
+    [SerializeField] private PlayerCommandManager player;
+
+    private void OnEnable()
+    {
+        player.HealthChanged += UpdatePlayerHPBar;
+    }
+
+    private void OnDisable()
+    {
+        player.HealthChanged -= UpdatePlayerHPBar;
+    }
+
     public void ShowUnitTurnText(string unitName)
     {
         unitTurnText.text = $"{unitName} Turn!";
