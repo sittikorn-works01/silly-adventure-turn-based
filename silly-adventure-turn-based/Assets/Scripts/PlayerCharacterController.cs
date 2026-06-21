@@ -13,6 +13,8 @@ public class PlayerCharacterController : MonoBehaviour
     private Vector3 velocity;
     private float inputMagnitude;
     public float VelocityX => inputMagnitude;
+    private GameStateController GameStateController => GameStateController.Instance;
+
 
     private void Update()
     {
@@ -21,14 +23,22 @@ public class PlayerCharacterController : MonoBehaviour
 
     private void HandleInput()
     {
-        ApplyGravity();
+        if(GameStateController.CurrentGameState == GameState.Dialogue)
+        {
+            return;
+        }
+
+        if (characterController.isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
 
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
         inputMagnitude = direction.magnitude;
 
-        if (direction.magnitude >= 0.1f)
+        if (inputMagnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
@@ -41,13 +51,5 @@ public class PlayerCharacterController : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
-    }
-
-    private void ApplyGravity()
-    {
-        if (characterController.isGrounded && velocity.y < 0)
-        {
-            velocity.y = -2f;
-        }
     }
 }

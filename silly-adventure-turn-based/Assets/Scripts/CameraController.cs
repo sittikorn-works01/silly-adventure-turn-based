@@ -9,7 +9,7 @@ public class CameraController : MonoBehaviour
     private GameStateController GameStateController => GameStateController.Instance;
 
 
-    public void Initialize()
+    public void OnEnable()
     {
         GameStateController.GameStateChanged += GameStateController_GameStateChanged;
     }

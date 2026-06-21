@@ -1523,6 +1523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 542e6a537f9c8ba468c1fd91db00d87e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameStateController
+  cameraController: {fileID: 330585549}
 --- !u!4 &1928867063
 Transform:
   m_ObjectHideFlags: 0
@@ -5039,6 +5040,7 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1928867063}
   - {fileID: 330585546}
   - {fileID: 207707843}
   - {fileID: 554810187}
@@ -5048,4 +5050,3 @@ SceneRoots:
   - {fileID: 961711856}
   - {fileID: 832575519}
   - {fileID: 410087041}
-  - {fileID: 1928867063}

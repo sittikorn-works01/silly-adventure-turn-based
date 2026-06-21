@@ -3,33 +3,46 @@ using UnityEngine;
 
 public class GameStateController : MonoBehaviour
 {
-    public static GameStateController Instance;
-    private GameState currentGameState;
+    private static GameStateController _instance;
+    public static GameStateController Instance
+    {
+        get
+        {
+            if(_instance == null)
+            {
+                _instance = FindFirstObjectByType<GameStateController>();
+            }
+            return _instance;
+        }
+    }
+    public GameState CurrentGameState { get; private set; }
 
     public event Action <GameState> GameStateChanged;
-    [SerializeField] private CameraController cameraController;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
-
-    private void Start()
-    {
-        cameraController.Initialize();
-    }
 
     public void ChangeGameState(GameState newState)
     {
-        currentGameState = newState;
+        CurrentGameState = newState;
         OnEnterGameState();
+    }
+
+    private void Update()
+    {
+        CHEAT();
+    }
+
+    private void CHEAT()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ChangeGameState(GameState.FreeRoam);
+        }
     }
 
     private void OnEnterGameState()
     {
-        GameStateChanged?.Invoke(currentGameState);
+        GameStateChanged?.Invoke(CurrentGameState);
 
-        //switch (currentGameState)
+        //switch (CurrentGameState)
         //{
         //    case GameState.FreeRoam:
         //        OnEnterFreeRoamState();
