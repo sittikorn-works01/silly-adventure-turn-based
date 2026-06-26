@@ -20,12 +20,13 @@ public class DialoguePanel : BasePanel
     public void Initialize(UnitInfo currentInteractedUnit)
     {
         this.currentInteractedUnit = currentInteractedUnit;
-        print($"PLAYER IS NOW HAVE A CHAT WITH {currentInteractedUnit.name}");
+        print($"Player is having a chat with {currentInteractedUnit.name}");
     }
 
     private void OnPressBattleButton()
     {
-        //BattleSetup.BeginBattle();
+        BattleSetup.BeginBattle(currentInteractedUnit);
+        print($"Player begins battle with {currentInteractedUnit.name}");
     }
 
     private void OnPressExitButton()

@@ -4,11 +4,12 @@ using UnityEngine;
 public class BattleManager : MonoBehaviour
 {
     public static BattleManager Instance { get; set; }
+    public static BattleSetup BattleSetup => BattleSetup.Instance;
     private BattleState currentState;
     public GameplayUIPanel gameplayUIPanel;
 
-    public PlayerCommandManager player;
-    public EnemyCommandManager enemy;
+    //public PlayerCommandManager player;
+    //public EnemyCommandManager enemy;
 
     private void Awake()
     {
@@ -24,8 +25,10 @@ public class BattleManager : MonoBehaviour
 
     private void Start()
     {
-        player.Initialize();
-        enemy.Initialize();
+        //player.Initialize();
+        //enemy.Initialize();
+        Dev.Log();
+        print($"Battle with {BattleSetup.EnemyToFight.name}");
         SetBattleState(BattleState.PlayerTurn);
     }
 
@@ -53,11 +56,11 @@ public class BattleManager : MonoBehaviour
     void OnEnterPlayerTurn()
     {
         gameplayUIPanel.ShowUnitTurnText("Player");
-        player.OnEnterTurn();
+        //player.OnEnterTurn();
     }
     private async UniTaskVoid OnEnterEnemyTurn()
     {
         gameplayUIPanel.ShowUnitTurnText("Enemy");
-        enemy.OnEnterTurn();
+        //enemy.OnEnterTurn();
     }
 }

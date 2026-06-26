@@ -5,7 +5,7 @@ public class EnemyCommandManager : BaseUnit
 {
     public void OnEnterTurn()
     {
-        DoDamage(GameManager.player);
+        //DoDamage(GameManager.player);
         EndTurn().Forget();
 
     }

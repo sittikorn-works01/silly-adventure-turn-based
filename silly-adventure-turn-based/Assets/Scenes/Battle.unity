@@ -1970,7 +1970,7 @@ GameObject:
   - component: {fileID: 1443618191}
   - component: {fileID: 1443618192}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: BattleManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

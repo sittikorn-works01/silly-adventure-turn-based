@@ -12,6 +12,6 @@ public class PlayerCommandManager : BaseUnit
 
     public void OnCommandAttack()
     {
-        DoDamage(GameManager.enemy);
+        //DoDamage(GameManager.enemy);
     }
 }
