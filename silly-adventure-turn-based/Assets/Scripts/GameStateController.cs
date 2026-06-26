@@ -16,21 +16,34 @@ public class GameStateController : MonoBehaviour
         }
     }
     public GameState CurrentGameState { get; private set; }
+    public DialogueController DialogueController;
 
     public event Action <GameState> GameStateChanged;
+
+    private void Awake()
+    {
+        //_instance = this;
+        //if (_instance != null)
+        //{
+        //    print("KUAY I'M OUT");
+        //    Destroy(gameObject);
+        //}
+    }
 
     public void ChangeGameState(GameState newState)
     {
         CurrentGameState = newState;
         OnEnterGameState();
+
+        GameStateChanged?.Invoke(CurrentGameState);
     }
 
     private void Update()
     {
-        CHEAT();
+        
     }
 
-    private void CHEAT()
+    private void CHEAT_EnterFreeRoamState()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -40,27 +53,25 @@ public class GameStateController : MonoBehaviour
 
     private void OnEnterGameState()
     {
-        GameStateChanged?.Invoke(CurrentGameState);
+        switch (CurrentGameState)
+        {
+            case GameState.FreeRoam:
+                OnEnterFreeRoamState();
+                break;
+            case GameState.Dialogue:
+                OnEnterDialogueState();
+                break;
+        }
 
-        //switch (CurrentGameState)
-        //{
-        //    case GameState.FreeRoam:
-        //        OnEnterFreeRoamState();
-        //        break;
-        //    case GameState.Dialogue:
-        //        OnEnterDialogueState();
-        //        break;
-        //}
-            
     }
 
-    //private void OnEnterFreeRoamState()
-    //{
+    private void OnEnterFreeRoamState()
+    {
 
-    //}
+    }
 
-    //private void OnEnterDialogueState()
-    //{
+    private void OnEnterDialogueState()
+    {
 
-    //}
+    }
 }

@@ -13,14 +13,25 @@ MonoBehaviour:
   m_Name: Main Camera Custom Blends
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBlenderSettings
   CustomBlends:
-  - From: CinemachineCamera
-    To: CinemachineCamera (1)
+  - From: '**ANY CAMERA**'
+    To: Camera - DialogueCamera
     Blend:
-      Style: 6
+      Style: 0
       Time: 2
       CustomCurve:
         serializedVersion: 2
         m_Curve: []
         m_PreInfinity: 0
         m_PostInfinity: 0
-        m_RotationOrder: 0
+        m_RotationOrder: 4
+  - From: '**ANY CAMERA**'
+    To: Camera - ThirdPersonCamera
+    Blend:
+      Style: 0
+      Time: 2
+      CustomCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 4

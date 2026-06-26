@@ -5,11 +5,16 @@ public class NPC : MonoBehaviour, IInteractable
     public CanvasGroup uiCanvas;
 
     [SerializeField] private string interactPrompt;
+    [SerializeField] private UnitInfo unitInfo;
     public string InteractPrompt => interactPrompt;    
 
     public void Interact()
     {
         print(interactPrompt);
+
+        GameStateController.Instance.DialogueController.SetCurrentInteractedUnit(unitInfo);
+        GameStateController.Instance.ChangeGameState(GameState.Dialogue);
+
     }
 
     private void OnTriggerEnter(Collider other)
