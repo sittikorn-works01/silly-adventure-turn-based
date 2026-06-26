@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69221e010effb7041a141c400b2c6e8e, type: 3}
-  m_Name: Player
+  m_Name: Rogue
   m_EditorClassIdentifier: Assembly-CSharp::UnitInfo
-  unitName: Gojo
+  unitName: Rogue
   hp: 10
   atk: 2
+  unitPrefab: {fileID: 8064477542382240842, guid: 60f0fd2b779903745ab2960df20850a4, type: 3}
