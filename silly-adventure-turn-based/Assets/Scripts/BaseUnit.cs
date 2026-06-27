@@ -12,8 +12,8 @@ public class BaseUnit: MonoBehaviour
 
     public virtual void Initialize()
     {
-        hp = unitInfo.hp;
-        atk = unitInfo.atk;
+        hp = unitInfo.Hp;
+        atk = unitInfo.Atk;
     }
 
     public virtual void DoDamage(BaseUnit unit)
@@ -24,6 +24,6 @@ public class BaseUnit: MonoBehaviour
     public virtual void TakeDamage(float receivedDamage)
     {
         hp -= receivedDamage;
-        HealthChanged?.Invoke(hp, unitInfo.hp);
+        HealthChanged?.Invoke(hp, unitInfo.Hp);
     }
 }

@@ -5,6 +5,6 @@ public static class SceneController
 {
     public static void LoadBattleScene()
     {
-        SceneManager.LoadScene("Test - Battle");
+        SceneManager.LoadScene("Battle");
     }
 }

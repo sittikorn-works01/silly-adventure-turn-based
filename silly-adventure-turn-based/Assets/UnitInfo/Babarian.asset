@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69221e010effb7041a141c400b2c6e8e, type: 3}
   m_Name: Babarian
   m_EditorClassIdentifier: Assembly-CSharp::UnitInfo
-  unitName: Babarian
-  hp: 10
-  atk: 2
+  UnitName: Babarian
+  Hp: 0
+  Atk: 0
+  UnitPrefab: {fileID: 6068735293708215044, guid: 03e84a40d6ec5d04b9d748df629b551f, type: 3}

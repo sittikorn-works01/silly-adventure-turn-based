@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameplayUIPanel : MonoBehaviour
+public class BattleUIPanel : BasePanel
 {
     [SerializeField] private TextMeshProUGUI unitTurnText;
     [SerializeField] private TextMeshProUGUI unitActionText;

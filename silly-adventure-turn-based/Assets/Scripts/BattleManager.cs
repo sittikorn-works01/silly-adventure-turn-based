@@ -1,33 +1,51 @@
 using Cysharp.Threading.Tasks;
+using System;
 using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
-    public static BattleManager Instance { get; set; }
+    private static BattleManager instance;
+    public static BattleManager Instance 
+    {
+        get 
+        { 
+            if(instance == null)
+            {
+                instance = FindFirstObjectByType<BattleManager>();
+            }
+            return instance;
+        }
+    }
     public static BattleSetup BattleSetup => BattleSetup.Instance;
     private BattleState currentState;
-    public GameplayUIPanel gameplayUIPanel;
+    public Action<BattleState> BattleStateChanged;
+
+    [SerializeField] private GameObject enemySpawnPoint;
+    [SerializeField] private GameObject playerSpawnPoint;
 
     //public PlayerCommandManager player;
     //public EnemyCommandManager enemy;
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(gameObject);
             return;
         }
 
-        Instance = this;
-
+        instance = this;
     }
 
     private void Start()
     {
         //player.Initialize();
         //enemy.Initialize();
-        Dev.Log();
+
+        Instantiate(BattleSetup.PlayerUnit.UnitPrefab, playerSpawnPoint.transform.position, playerSpawnPoint.transform.rotation);
+        Instantiate(BattleSetup.EnemyToFight.UnitPrefab, enemySpawnPoint.transform.position, enemySpawnPoint.transform.rotation);
+
+        
         print($"Battle with {BattleSetup.EnemyToFight.name}");
         SetBattleState(BattleState.PlayerTurn);
     }
@@ -55,12 +73,12 @@ public class BattleManager : MonoBehaviour
 
     void OnEnterPlayerTurn()
     {
-        gameplayUIPanel.ShowUnitTurnText("Player");
+        //battlePanel.ShowUnitTurnText("Player");
         //player.OnEnterTurn();
     }
     private async UniTaskVoid OnEnterEnemyTurn()
     {
-        gameplayUIPanel.ShowUnitTurnText("Enemy");
+        //battlePanel.ShowUnitTurnText("Enemy");
         //enemy.OnEnterTurn();
     }
 }

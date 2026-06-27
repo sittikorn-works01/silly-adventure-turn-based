@@ -8,6 +8,7 @@ public class DialogueController : MonoBehaviour
     [SerializeField] private DialoguePanel dialoguePanel;
     private GameStateController GameStateController => GameStateController.Instance;
     private UnitInfo currentInteractedUnit;
+    private UnitInfo playerUnit;
 
     private void GameStateController_GameStateChanged(GameState state)
     {
@@ -27,6 +28,11 @@ public class DialogueController : MonoBehaviour
         currentInteractedUnit = interactedUnit;
     }
 
+    public void SetPlayerUnit(UnitInfo playerUnit)
+    {
+        this.playerUnit = playerUnit;
+    }
+
     private void OnEnterFreeRoamState()
     {
         dialoguePanel.Close();
@@ -35,7 +41,7 @@ public class DialogueController : MonoBehaviour
     private void OnEnterDialogueState()
     {
         dialoguePanel.Open();
-        dialoguePanel.Initialize(currentInteractedUnit);
+        dialoguePanel.Initialize(playerUnit, currentInteractedUnit);
     }
 
     public void OnEnable()

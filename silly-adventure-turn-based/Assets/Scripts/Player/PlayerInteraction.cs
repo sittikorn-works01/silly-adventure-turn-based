@@ -1,8 +1,11 @@
+using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
     private IInteractable currentInteractableObj;
+    [SerializeField] private UnitInfo playerUnit; 
 
     private void OnTriggerEnter(Collider other)
     {
@@ -24,6 +27,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && currentInteractableObj != null)
         {
+            GameStateController.Instance.DialogueController.SetPlayerUnit(playerUnit);
             currentInteractableObj.Interact();
         }
     }

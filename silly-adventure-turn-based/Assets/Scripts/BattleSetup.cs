@@ -5,6 +5,7 @@ public class BattleSetup : MonoBehaviour
 {
     private static BattleSetup _instance;
     public UnitInfo EnemyToFight { get; private set;  }
+    public UnitInfo PlayerUnit { get; private set;  }
     public static BattleSetup Instance
     {
         get 
@@ -29,9 +30,10 @@ public class BattleSetup : MonoBehaviour
         }
     }
 
-    public void BeginBattle(UnitInfo unitInfo)
+    public void BeginBattle(UnitInfo playerInfo, UnitInfo enemyInfo)
     {
-        EnemyToFight = unitInfo;
+        PlayerUnit = playerInfo;
+        EnemyToFight = enemyInfo;
         SceneController.LoadBattleScene();
     }
 

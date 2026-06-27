@@ -19,6 +19,6 @@ public class EnemyCommandManager : BaseUnit
     public override void TakeDamage(float receivedDamage)
     {
         base.TakeDamage(receivedDamage);
-        GameManager.gameplayUIPanel.UpdateEnemyHPBar(hp, unitInfo.hp);
+        //GameManager.battlePanel.UpdateEnemyHPBar(hp, unitInfo.hp);
     }
 }

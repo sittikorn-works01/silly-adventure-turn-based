@@ -9,6 +9,7 @@ public class DialoguePanel : BasePanel
     private BattleSetup BattleSetup => BattleSetup.Instance;
 
     private UnitInfo currentInteractedUnit;
+    private UnitInfo playerUnit;
 
 
     private void OnEnable()
@@ -17,16 +18,17 @@ public class DialoguePanel : BasePanel
         exitButton.onClick.AddListener(OnPressExitButton);
     }
 
-    public void Initialize(UnitInfo currentInteractedUnit)
+    public void Initialize(UnitInfo playerUnit, UnitInfo currentInteractedUnit)
     {
+        this.playerUnit = playerUnit;
         this.currentInteractedUnit = currentInteractedUnit;
-        print($"Player is having a chat with {currentInteractedUnit.name}");
+        print($"{playerUnit.name} is having a chat with {currentInteractedUnit.name}");
     }
 
     private void OnPressBattleButton()
     {
-        BattleSetup.BeginBattle(currentInteractedUnit);
-        print($"Player begins battle with {currentInteractedUnit.name}");
+        BattleSetup.BeginBattle(playerUnit, currentInteractedUnit);
+        print($"{playerUnit.name} begins battle with {currentInteractedUnit.name}");
     }
 
     private void OnPressExitButton()
