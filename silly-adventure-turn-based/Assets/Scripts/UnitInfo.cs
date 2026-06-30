@@ -6,5 +6,6 @@ public class UnitInfo : ScriptableObject
     public string UnitName;
     public int Hp;
     public int Atk;
+
     public GameObject UnitPrefab;
 }

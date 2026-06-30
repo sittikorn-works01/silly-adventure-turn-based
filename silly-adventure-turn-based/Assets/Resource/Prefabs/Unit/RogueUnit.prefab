@@ -1468,7 +1468,6 @@ GameObject:
   - component: {fileID: 1638058290189246235}
   - component: {fileID: 3851368260881309879}
   - component: {fileID: 7750845581321414483}
-  - component: {fileID: 3222408348251752617}
   m_Layer: 0
   m_Name: RogueUnit
   m_TagString: Untagged
@@ -1538,22 +1537,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 2.38
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &3222408348251752617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8064477542382240842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 113513c28fba53848b9e48790ec6e1ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerBattleManager
-  unitInfo: {fileID: 11400000, guid: e68b9d9670b58494eab76124ef309872, type: 2}
-  hp: 0
-  atk: 0
-  commandPanel: {fileID: 0}
 --- !u!1 &8843533982933863506
 GameObject:
   m_ObjectHideFlags: 0

@@ -1330,14 +1330,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6068735293708215044}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f55a9337bc879094087172991dcab392, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyCommandManager
-  unitInfo: {fileID: 11400000, guid: bac785f9f940bca4797733860488c3f5, type: 2}
-  hp: 0
-  atk: 0
 --- !u!1 &6141194000293045470
 GameObject:
   m_ObjectHideFlags: 0

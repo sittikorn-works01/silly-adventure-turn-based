@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class BattleSetup : MonoBehaviour
 {
     private static BattleSetup _instance;
-    public UnitInfo EnemyToFight { get; private set;  }
+    public UnitInfo EnemyUnit { get; private set;  }
     public UnitInfo PlayerUnit { get; private set;  }
     public static BattleSetup Instance
     {
@@ -33,7 +33,7 @@ public class BattleSetup : MonoBehaviour
     public void BeginBattle(UnitInfo playerInfo, UnitInfo enemyInfo)
     {
         PlayerUnit = playerInfo;
-        EnemyToFight = enemyInfo;
+        EnemyUnit = enemyInfo;
         SceneController.LoadBattleScene();
     }
 

@@ -1,7 +1,7 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public class EnemyCommandManager : BaseUnit
+public class EnemyCommandManager : BaseUnitManager
 {
     public void OnEnterTurn()
     {
@@ -20,5 +20,10 @@ public class EnemyCommandManager : BaseUnit
     {
         base.TakeDamage(receivedDamage);
         //GameManager.battlePanel.UpdateEnemyHPBar(hp, unitInfo.hp);
+    }
+
+    public override void BattleManager_OnBattleStateChanged(BattleState state)
+    {
+        
     }
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
+using System;
 
 public class PlayerCommandPanel : MonoBehaviour
 {
@@ -8,10 +9,13 @@ public class PlayerCommandPanel : MonoBehaviour
 
     [SerializeField] private Button attackButton; 
     [SerializeField] private Button healButton; 
-    [SerializeField] private Button surrenderButton; 
+    [SerializeField] private Button surrenderButton;
+
+    public event Action<PlayerCommand> OnPlayerUsingCommand;
 
     public void SetupPanel()
     {
+        Dev.Log();
         attackButton.onClick.AddListener(OnPressCommandAttack);
         healButton.onClick.AddListener(OnPressCommandAttack);
         surrenderButton.onClick.AddListener(OnPressCommandAttack);
@@ -23,7 +27,7 @@ public class PlayerCommandPanel : MonoBehaviour
 
     private void OnPressCommandAttack()
     {
-        playerBattleCommand.OnCommandAttack();
+        OnPlayerUsingCommand?.Invoke(PlayerCommand.Attack);
         EndTurn().Forget();
     }
 

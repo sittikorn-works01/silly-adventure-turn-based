@@ -18,13 +18,14 @@ public class BattleManager : MonoBehaviour
     }
     public static BattleSetup BattleSetup => BattleSetup.Instance;
     private BattleState currentState;
-    public Action<BattleState> BattleStateChanged;
+    public Action<BattleState> OnBattleStateChanged;
 
+    [SerializeField] private Transform unitsParent;
     [SerializeField] private GameObject enemySpawnPoint;
     [SerializeField] private GameObject playerSpawnPoint;
 
-    //public PlayerCommandManager player;
-    //public EnemyCommandManager enemy;
+    public PlayerCommandManager player;
+    public EnemyCommandManager enemy;
 
     private void Awake()
     {
@@ -39,20 +40,22 @@ public class BattleManager : MonoBehaviour
 
     private void Start()
     {
-        //player.Initialize();
-        //enemy.Initialize();
+        player.Initialize(BattleSetup.PlayerUnit);
+        enemy.Initialize(BattleSetup.EnemyUnit);
 
-        Instantiate(BattleSetup.PlayerUnit.UnitPrefab, playerSpawnPoint.transform.position, playerSpawnPoint.transform.rotation);
-        Instantiate(BattleSetup.EnemyToFight.UnitPrefab, enemySpawnPoint.transform.position, enemySpawnPoint.transform.rotation);
+        Instantiate(BattleSetup.PlayerUnit.UnitPrefab, playerSpawnPoint.transform.position, playerSpawnPoint.transform.rotation, unitsParent);
+        Instantiate(BattleSetup.EnemyUnit.UnitPrefab, enemySpawnPoint.transform.position, enemySpawnPoint.transform.rotation, unitsParent);
 
         
-        print($"Battle with {BattleSetup.EnemyToFight.name}");
+        print($"Battle with {BattleSetup.EnemyUnit.name}");
         SetBattleState(BattleState.PlayerTurn);
     }
 
     public void SetBattleState(BattleState newState)
     {
+        Dev.Log();
         currentState = newState;
+        OnBattleStateChanged?.Invoke(newState);
         OnChangeBattleState();
     }
 
