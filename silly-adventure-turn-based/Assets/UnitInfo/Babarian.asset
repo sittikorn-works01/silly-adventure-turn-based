@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69221e010effb7041a141c400b2c6e8e, type: 3}
+  m_Name: Babarian
+  m_EditorClassIdentifier: Assembly-CSharp::UnitInfo
+  UnitName: Babarian
+  Hp: 0
+  Atk: 0
+  UnitPrefab: {fileID: 6068735293708215044, guid: 03e84a40d6ec5d04b9d748df629b551f, type: 3}
