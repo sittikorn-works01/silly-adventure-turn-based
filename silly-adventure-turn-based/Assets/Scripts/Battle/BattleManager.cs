@@ -23,6 +23,7 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private Transform unitsParent;
     [SerializeField] private GameObject enemySpawnPoint;
     [SerializeField] private GameObject playerSpawnPoint;
+    [SerializeField] private BattleUIPanel battlePanel;
 
     public PlayerCommandManager player;
     public EnemyCommandManager enemy;
@@ -45,6 +46,8 @@ public class BattleManager : MonoBehaviour
 
         Instantiate(BattleSetup.PlayerUnit.UnitPrefab, playerSpawnPoint.transform.position, playerSpawnPoint.transform.rotation, unitsParent);
         Instantiate(BattleSetup.EnemyUnit.UnitPrefab, enemySpawnPoint.transform.position, enemySpawnPoint.transform.rotation, unitsParent);
+
+        battlePanel.Initialize(player);
 
         
         print($"Battle with {BattleSetup.EnemyUnit.name}");

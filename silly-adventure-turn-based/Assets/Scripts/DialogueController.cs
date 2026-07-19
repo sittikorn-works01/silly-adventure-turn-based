@@ -1,7 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.InputSystem.LowLevel;
-using UnityEngine.Splines.ExtrusionShapes;
 
 public class DialogueController : MonoBehaviour
 {

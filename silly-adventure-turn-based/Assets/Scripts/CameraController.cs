@@ -19,6 +19,11 @@ public class CameraController : MonoBehaviour
         GameStateController.GameStateChanged -= GameStateController_GameStateChanged;
     }
 
+    private void OnDestroy()
+    {
+        GameStateController.GameStateChanged -= GameStateController_GameStateChanged;
+    }
+
     private void GameStateController_GameStateChanged(GameState newState)
     {
         switch (newState)

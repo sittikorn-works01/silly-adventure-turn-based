@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Rogue
   m_EditorClassIdentifier: Assembly-CSharp::UnitInfo
   UnitName: Rogue
-  Hp: 0
-  Atk: 0
+  Hp: 10
+  Atk: 1
   UnitPrefab: {fileID: 8064477542382240842, guid: 60f0fd2b779903745ab2960df20850a4, type: 3}

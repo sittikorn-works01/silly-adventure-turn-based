@@ -8,18 +8,18 @@ public class BattleUIPanel : BasePanel
     [SerializeField] private TextMeshProUGUI unitActionText;
 
     [SerializeField] private Image playerHPBar;
-    [SerializeField] private Image enemyHPBar;
 
-    [SerializeField] private PlayerCommandManager player;
-
-    private void OnEnable()
-    {
-        player.HealthChanged += UpdatePlayerHPBar;
-    }
-
+    private PlayerCommandManager player;
+    
     private void OnDisable()
     {
         player.HealthChanged -= UpdatePlayerHPBar;
+    }
+
+    public void Initialize(PlayerCommandManager player)
+    {
+        this.player = player;
+        player.HealthChanged += UpdatePlayerHPBar;
     }
 
     public void ShowUnitTurnText(string unitName)
@@ -38,13 +38,4 @@ public class BattleUIPanel : BasePanel
         playerHPBar.fillAmount = currentHealth/maxHealth;
         Debug.Log($"{currentHealth} {maxHealth}");
     }
-
-    public void UpdateEnemyHPBar(float currentHealth, float maxHealth)
-    {
-        Dev.Log();
-        enemyHPBar.fillAmount = currentHealth/maxHealth;
-        Debug.Log($"{currentHealth} {maxHealth}");
-    }
-
-
 }
