@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,7 +33,13 @@ public class PlayerCommandManager : BaseUnitManager
         print($"{UnitName} is attacking");
         //TODO: add select-unit-to-apply-command system
         BattleManager.Instance.enemy.TakeDamage(Atk);
-        
+        EndTurn().Forget();
+    }
+
+    private async UniTaskVoid EndTurn()
+    {
+        await UniTask.Delay(1000);
+        BattleManager.Instance.SetBattleState(BattleState.EnemyTurn);
     }
 
     public override void OnEnable()
@@ -41,14 +48,11 @@ public class PlayerCommandManager : BaseUnitManager
         commandPanel.OnPlayerUsingCommand += CommandPanel_OnPlayerUsingCommand;
     }
 
-
     public override void OnDisable()
     {
         base.OnDisable();
         commandPanel.OnPlayerUsingCommand -= CommandPanel_OnPlayerUsingCommand;
     }
-
-
 
     private void CommandPanel_OnPlayerUsingCommand(PlayerCommand command)
     {

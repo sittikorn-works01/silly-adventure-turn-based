@@ -25,7 +25,6 @@ public class GameStateController : MonoBehaviour
         //_instance = this;
         //if (_instance != null)
         //{
-        //    print("KUAY I'M OUT");
         //    Destroy(gameObject);
         //}
     }

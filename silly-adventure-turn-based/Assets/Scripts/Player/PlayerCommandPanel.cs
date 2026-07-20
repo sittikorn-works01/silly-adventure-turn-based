@@ -15,7 +15,6 @@ public class PlayerCommandPanel : MonoBehaviour
 
     public void SetupPanel()
     {
-        Dev.Log();
         attackButton.onClick.AddListener(OnPressCommandAttack);
         healButton.onClick.AddListener(OnPressCommandAttack);
         surrenderButton.onClick.AddListener(OnPressCommandAttack);
@@ -28,15 +27,7 @@ public class PlayerCommandPanel : MonoBehaviour
     private void OnPressCommandAttack()
     {
         OnPlayerUsingCommand?.Invoke(PlayerCommand.Attack);
-        EndTurn().Forget();
-    }
-
-    private async UniTaskVoid EndTurn()
-    {
         DisableCommandButton();
-        await UniTask.Delay(1000);
-        BattleManager.Instance.SetBattleState(BattleState.EnemyTurn);
-        
     }
 
     private void DisableCommandButton()

@@ -10,32 +10,49 @@ public class BattleUIPanel : BasePanel
     [SerializeField] private Image playerHPBar;
 
     private PlayerCommandManager player;
+    private EnemyCommandManager enemy;
     
-    private void OnDisable()
+    private void OnEnable()
+    {
+        BattleManager.Instance.OnBattleStateChanged += ShowUnitTurnText;
+    }   
+
+    public void Initialize(PlayerCommandManager player, EnemyCommandManager enemy)
+    {
+        this.player = player;
+        this.enemy = enemy;
+        player.HealthChanged += UpdatePlayerHPBar;
+    }
+
+    public void ShowUnitTurnText(BattleState state)
+    {
+        if(state == BattleState.PlayerTurn)
+        {
+            unitTurnText.text = $"{player.name} Turn!";
+        }
+        else if (state == BattleState.EnemyTurn)
+        {
+            unitTurnText.text = $"{enemy.name} Turn!";
+        }
+    }
+
+    //public void ShowUnitActionText(string unitName)
+    //{
+    //    unitActionText.text = $"{unitName} Turn!";
+    //}
+
+    public void UpdatePlayerHPBar(float currentHealth, float maxHealth)
+    {
+        playerHPBar.fillAmount = currentHealth/maxHealth;
+    }
+
+    private void OnDestroy()
     {
         player.HealthChanged -= UpdatePlayerHPBar;
     }
 
-    public void Initialize(PlayerCommandManager player)
+    private void OnDisable()
     {
-        this.player = player;
-        player.HealthChanged += UpdatePlayerHPBar;
-    }
-
-    public void ShowUnitTurnText(string unitName)
-    {
-        unitTurnText.text = $"{unitName} Turn!";
-    }
-
-    public void ShowUnitActionText(string unitName)
-    {
-        unitActionText.text = $"{unitName} Turn!";
-    }
-
-    public void UpdatePlayerHPBar(float currentHealth, float maxHealth)
-    {
-        Dev.Log();
-        playerHPBar.fillAmount = currentHealth/maxHealth;
-        Debug.Log($"{currentHealth} {maxHealth}");
+        BattleManager.Instance.OnBattleStateChanged -= ShowUnitTurnText;
     }
 }

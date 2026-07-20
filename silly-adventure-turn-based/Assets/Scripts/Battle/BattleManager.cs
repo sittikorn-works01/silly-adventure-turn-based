@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleManager : MonoBehaviour
@@ -18,6 +19,7 @@ public class BattleManager : MonoBehaviour
     }
     public static BattleSetup BattleSetup => BattleSetup.Instance;
     private BattleState currentState;
+
     public Action<BattleState> OnBattleStateChanged;
 
     [SerializeField] private Transform unitsParent;
@@ -27,6 +29,8 @@ public class BattleManager : MonoBehaviour
 
     public PlayerCommandManager player;
     public EnemyCommandManager enemy;
+
+    //private Dictionary<BattleState, Action> stateHandlers;
 
     private void Awake()
     {
@@ -47,35 +51,43 @@ public class BattleManager : MonoBehaviour
         Instantiate(BattleSetup.PlayerUnit.UnitPrefab, playerSpawnPoint.transform.position, playerSpawnPoint.transform.rotation, unitsParent);
         Instantiate(BattleSetup.EnemyUnit.UnitPrefab, enemySpawnPoint.transform.position, enemySpawnPoint.transform.rotation, unitsParent);
 
-        battlePanel.Initialize(player);
-
+        battlePanel.Initialize(player, enemy);
         
         print($"Battle with {BattleSetup.EnemyUnit.name}");
         SetBattleState(BattleState.PlayerTurn);
     }
 
+    //private void SetupStateHandlers()
+    //{
+    //    stateHandlers = new()
+    //    {
+    //        {BattleState.PlayerTurn,  OnEnterPlayerTurn},
+    //        {BattleState.EnemyTurn,  OnEnterEnemyTurn},
+    //    };
+    //}
+
+    //private void OnChangeBattleState()
+    //{
+    //    switch (currentState)
+    //    {
+    //        case BattleState.PlayerTurn:
+    //            OnEnterPlayerTurn();
+    //            break;
+    //        case BattleState.EnemyTurn:
+    //            OnEnterEnemyTurn().Forget();
+    //            break;
+    //        default:
+    //            break;
+    //    }
+    //}
+
     public void SetBattleState(BattleState newState)
     {
-        Dev.Log();
         currentState = newState;
         OnBattleStateChanged?.Invoke(newState);
-        OnChangeBattleState();
     }
 
-    private void OnChangeBattleState()
-    {
-        switch (currentState)
-        {
-            case BattleState.PlayerTurn:
-                OnEnterPlayerTurn();
-                break;
-            case BattleState.EnemyTurn:
-                OnEnterEnemyTurn().Forget();
-                break;
-            default:
-                break;
-        }
-    }
+
 
     void OnEnterPlayerTurn()
     {

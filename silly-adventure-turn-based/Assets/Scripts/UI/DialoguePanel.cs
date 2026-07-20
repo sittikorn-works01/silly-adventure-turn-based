@@ -34,6 +34,5 @@ public class DialoguePanel : BasePanel
     private void OnPressExitButton()
     {
         GameStateController.ChangeGameState(GameState.FreeRoam);
-        Dev.Log();
     }
 }
