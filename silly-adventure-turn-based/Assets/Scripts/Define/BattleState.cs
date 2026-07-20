@@ -5,5 +5,6 @@ public enum BattleState
     Start,
     PlayerTurn,
     EnemyTurn,
-    Result,
+    Win,
+    Lose,
 }

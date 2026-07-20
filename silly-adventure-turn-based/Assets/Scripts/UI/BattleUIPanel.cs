@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class BattleUIPanel : BasePanel
 {
@@ -11,10 +13,14 @@ public class BattleUIPanel : BasePanel
 
     private PlayerCommandManager player;
     private EnemyCommandManager enemy;
-    
+
+    private Dictionary<BattleState, Action> stateHandlers;
+
+    [SerializeField] private ResultPanel resultPanel;
+
     private void OnEnable()
     {
-        BattleManager.Instance.OnBattleStateChanged += ShowUnitTurnText;
+        BattleManager.Instance.OnBattleStateChanged += BattleManager_OnBattleStateChanged;
     }   
 
     public void Initialize(PlayerCommandManager player, EnemyCommandManager enemy)
@@ -22,24 +28,30 @@ public class BattleUIPanel : BasePanel
         this.player = player;
         this.enemy = enemy;
         player.HealthChanged += UpdatePlayerHPBar;
+
+        SetupHandlers();
     }
 
-    public void ShowUnitTurnText(BattleState state)
+    private void SetupHandlers()
     {
-        if(state == BattleState.PlayerTurn)
+        stateHandlers = new()
         {
-            unitTurnText.text = $"{player.name} Turn!";
-        }
-        else if (state == BattleState.EnemyTurn)
-        {
-            unitTurnText.text = $"{enemy.name} Turn!";
-        }
+            {BattleState.PlayerTurn, () => ShowUnitTurnText(player)},
+            {BattleState.EnemyTurn, () => ShowUnitTurnText(enemy)},
+            {BattleState.Win, () => ShowResultPanel(BattleState.Win)},
+            {BattleState.Lose, () => ShowResultPanel(BattleState.Lose)},
+        };
     }
 
-    //public void ShowUnitActionText(string unitName)
-    //{
-    //    unitActionText.text = $"{unitName} Turn!";
-    //}
+    private void ShowUnitTurnText(BaseUnitManager unit)
+    {
+        unitTurnText.text = $"{unit.UnitName} Turn!";
+    }
+
+    private void ShowUnitActionText(string unitName)
+    {
+        unitActionText.text = $"{unitName} Turn!";
+    }
 
     public void UpdatePlayerHPBar(float currentHealth, float maxHealth)
     {
@@ -53,6 +65,20 @@ public class BattleUIPanel : BasePanel
 
     private void OnDisable()
     {
-        BattleManager.Instance.OnBattleStateChanged -= ShowUnitTurnText;
+        BattleManager.Instance.OnBattleStateChanged -= BattleManager_OnBattleStateChanged;
+    }
+
+    private void BattleManager_OnBattleStateChanged(BattleState state)
+    {
+        if(stateHandlers.TryGetValue(state, out var handler))
+        {
+            handler.Invoke();
+        }
+    }
+
+    private void ShowResultPanel(BattleState state)
+    {
+        resultPanel.Initialize(state);
+        resultPanel.Open();
     }
 }

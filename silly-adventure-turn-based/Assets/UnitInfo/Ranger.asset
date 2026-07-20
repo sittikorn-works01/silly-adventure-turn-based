@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UnitInfo
   UnitName: Ranger
   Hp: 10
-  Atk: 1
+  Atk: 5
   UnitPrefab: {fileID: 1121536114974418494, guid: 5a8fd9fae80df984a877ada1dabc15d0, type: 3}

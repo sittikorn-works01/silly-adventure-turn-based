@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UnitInfo
   UnitName: Babarian
   Hp: 10
-  Atk: 1
+  Atk: 5
   UnitPrefab: {fileID: 6068735293708215044, guid: 03e84a40d6ec5d04b9d748df629b551f, type: 3}

@@ -18,7 +18,10 @@ public class EnemyCommandManager : BaseUnitManager
     public void OnEnterTurn()
     {
         DoDamage();
-        EndTurn().Forget();
+        if (BattleManager.Instance.player.Hp > 0)
+        {
+            EndTurn().Forget();
+        }
 
     }
     public void DoDamage()
@@ -32,6 +35,16 @@ public class EnemyCommandManager : BaseUnitManager
     {
         await UniTask.Delay(1000);
         BattleManager.Instance.SetBattleState(BattleState.PlayerTurn);
+    }
+
+    public override void TakeDamage(float receivedDamage)
+    {
+        base.TakeDamage(receivedDamage);
+
+        if (Hp <= 0)
+        {
+            BattleManager.Instance.SetBattleState(BattleState.Win);
+        }
     }
 
     public override void BattleManager_OnBattleStateChanged(BattleState state)

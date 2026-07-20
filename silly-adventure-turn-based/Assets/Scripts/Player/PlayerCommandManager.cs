@@ -33,13 +33,27 @@ public class PlayerCommandManager : BaseUnitManager
         print($"{UnitName} is attacking");
         //TODO: add select-unit-to-apply-command system
         BattleManager.Instance.enemy.TakeDamage(Atk);
-        EndTurn().Forget();
+        if (BattleManager.Instance.enemy.Hp > 0)
+        {
+            EndTurn().Forget();
+        }       
     }
 
     private async UniTaskVoid EndTurn()
     {
         await UniTask.Delay(1000);
         BattleManager.Instance.SetBattleState(BattleState.EnemyTurn);
+    }
+
+    public override void TakeDamage(float receivedDamage)
+    {
+        base.TakeDamage(receivedDamage);
+
+        if (Hp <= 0)
+        {
+            Hp = 0;
+            BattleManager.Instance.SetBattleState(BattleState.Lose);
+        }
     }
 
     public override void OnEnable()

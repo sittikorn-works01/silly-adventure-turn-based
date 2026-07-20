@@ -32,6 +32,11 @@ public abstract class BaseUnitManager : MonoBehaviour
     {
         Hp -= receivedDamage;
         HealthChanged?.Invoke(Hp, MaxHp);
+
+        if(Hp <= 0)
+        {
+            Hp = 0;
+        }
     }
 
     public virtual void OnEnable()

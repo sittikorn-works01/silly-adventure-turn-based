@@ -30,8 +30,6 @@ public class BattleManager : MonoBehaviour
     public PlayerCommandManager player;
     public EnemyCommandManager enemy;
 
-    //private Dictionary<BattleState, Action> stateHandlers;
-
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -57,46 +55,9 @@ public class BattleManager : MonoBehaviour
         SetBattleState(BattleState.PlayerTurn);
     }
 
-    //private void SetupStateHandlers()
-    //{
-    //    stateHandlers = new()
-    //    {
-    //        {BattleState.PlayerTurn,  OnEnterPlayerTurn},
-    //        {BattleState.EnemyTurn,  OnEnterEnemyTurn},
-    //    };
-    //}
-
-    //private void OnChangeBattleState()
-    //{
-    //    switch (currentState)
-    //    {
-    //        case BattleState.PlayerTurn:
-    //            OnEnterPlayerTurn();
-    //            break;
-    //        case BattleState.EnemyTurn:
-    //            OnEnterEnemyTurn().Forget();
-    //            break;
-    //        default:
-    //            break;
-    //    }
-    //}
-
     public void SetBattleState(BattleState newState)
     {
         currentState = newState;
         OnBattleStateChanged?.Invoke(newState);
-    }
-
-
-
-    void OnEnterPlayerTurn()
-    {
-        //battlePanel.ShowUnitTurnText("Player");
-        //player.OnEnterTurn();
-    }
-    private async UniTaskVoid OnEnterEnemyTurn()
-    {
-        //battlePanel.ShowUnitTurnText("Enemy");
-        //enemy.OnEnterTurn();
     }
 }
